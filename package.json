@@ -1,0 +1,20 @@
+{
+  "name": "mendelcalculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/timgabhh/mendelcalculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/timgabhh/mendelcalculator/issues"
+  },
+  "homepage": "https://gitlab.com/timgabhh/mendelcalculator#readme"
+}
