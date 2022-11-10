@@ -75,12 +75,6 @@ function calcPhen(gens){
     return color + "/" + form;
 }
 
-var stats = {
-    gelb_rund: 0,
-    gelb_kantig: 0,
-    gruen_rund: 0,
-    gruen_kantig: 0
-}
 
 function countStats(childs) {
     for(var child of childs){
@@ -112,21 +106,27 @@ function genChild(){
     return child;
 }
 
-var ITERATIONS = 1048576;
+function main(ITERATIONS){
+    var estimations = {
+        gelb_rund: ITERATIONS * 9/16,
+        gelb_kantig: ITERATIONS * 3/16,
+        gruen_rund: ITERATIONS * 3/16,
+        gruen_kantig: ITERATIONS * 1/16
+    }
+    var stats = {
+        gelb_rund: 0,
+        gelb_kantig: 0,
+        gruen_rund: 0,
+        gruen_kantig: 0
+    }
 
-var estimations = {
-    gelb_rund: ITERATIONS * 9/16,
-    gelb_kantig: ITERATIONS * 3/16,
-    gruen_rund: ITERATIONS * 3/16,
-    gruen_kantig: ITERATIONS * 1/16
+    var genList = [];
+
+    for (var i = 0; i < ITERATIONS; i++) {
+        genList.push(genChild());
+    }
+    countStats(genList);
+
+    return {iterations: ITERATIONS, stats: stats, expectation: estimations};    
 }
 
-var genList = [];
-
-for (var i = 0; i < ITERATIONS; i++) {
-    genList.push(genChild());
-}
-countStats(genList);
-console.log("Iterations:", ITERATIONS);
-console.log("Estimation:", estimations);
-console.log("Result    :", stats);
