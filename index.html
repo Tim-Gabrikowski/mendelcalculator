@@ -3,13 +3,99 @@
     <head>
         <title>Münzwurf 3. Mendelsche Regel</title>
         <script src="index.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-       <p id="out">BLA</p> 
+        <h1>Mendel-Calculator</h1>
+        <div>
+            <label for="iterations-input">Anzahl Iterationen:</label>
+            <input type="number" value="48" id="iterations-input" name="iterations-input">
+            <button id="submit-button" onclick="calculateTable()">Calculate</button>
+        </div>
+        <div>
+            <h2>Ergebnisse: </h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ph&auml;notyp</th>
+                        <th>Erwartung</th>
+                        <th>Ergebnis</th>
+                        <th>Differenz zu Erwartung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>gelb, rund</td>
+                        <td id="t_ge_ru_x"></td>
+                        <td id="t_ge_ru_e"></td>
+                        <td id="t_ge_ru_d"></td>
+                    </tr>
+                        <td>gelb, kantig</td>
+                        <td id="t_ge_ka_x"></td>
+                        <td id="t_ge_ka_e"></td>
+                        <td id="t_ge_ka_d"></td>
+                    </tr>
+                        <td>gr&uuml;n, rund</td>
+                        <td id="t_gr_ru_x"></td>
+                        <td id="t_gr_ru_e"></td>
+                        <td id="t_gr_ru_d"></td>
+                    </tr>
+                        <td>gr&uuml;n, antig</td>
+                        <td id="t_gr_ka_x"></td>
+                        <td id="t_gr_ka_e"></td>
+                        <td id="t_gr_ka_d"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <script>
-            var res = main(48)
+            function dElem(id){
+                return document.getElementById(id)
+            }
 
-            document.getElementById("out").innerText = JSON.stringify(res);
+            const inputField = document.getElementById("iterations-input");
+
+            function render(res){
+                var elements = {
+                    expectations: {
+                        gelb_rund: dElem("t_ge_ru_x"),
+                        gelb_kantig: dElem("t_ge_ka_x"),
+                        gruen_rund: dElem("t_gr_ru_x"),
+                        gruen_kantig: dElem("t_gr_ka_x")
+                    },
+                    stats: {
+                        gelb_rund: dElem("t_ge_ru_e"),
+                        gelb_kantig: dElem("t_ge_ka_e"),
+                        gruen_rund: dElem("t_gr_ru_e"),
+                        gruen_kantig: dElem("t_gr_ka_e")
+                    },
+                    diff: {
+                        gelb_rund: dElem("t_ge_ru_d"),
+                        gelb_kantig: dElem("t_ge_ka_d"),
+                        gruen_rund: dElem("t_gr_ru_d"),
+                        gruen_kantig: dElem("t_gr_ka_d")
+                    }
+                }
+                elements.expectations.gelb_rund.innerText = res.expectation.gelb_rund;
+                elements.expectations.gelb_kantig.innerText = res.expectation.gelb_kantig;
+                elements.expectations.gruen_rund.innerText = res.expectation.gruen_rund;
+                elements.expectations.gruen_kantig.innerText = res.expectation.gruen_kantig;
+
+                elements.stats.gelb_rund.innerText = res.stats.gelb_rund;
+                elements.stats.gelb_kantig.innerText = res.stats.gelb_kantig;
+                elements.stats.gruen_rund.innerText = res.stats.gruen_rund;
+                elements.stats.gruen_kantig.innerText = res.stats.gruen_kantig;
+
+                elements.diff.gelb_rund.innerText = res.stats.gelb_rund - res.expectation.gelb_rund;
+                elements.diff.gelb_kantig.innerText = res.stats.gelb_kantig - res.expectation.gelb_kantig;
+                elements.diff.gruen_rund.innerText = res.stats.gruen_rund - res.expectation.gruen_rund;
+                elements.diff.gruen_kantig.innerText = res.stats.gruen_kantig - res.expectation.gruen_kantig;
+            }
+
+            function calculateTable(){
+                var result = main(inputField.value);
+                render(result);
+            }
         </script>
     </body>
 

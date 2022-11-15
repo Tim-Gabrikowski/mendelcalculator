@@ -77,6 +77,12 @@ function calcPhen(gens){
 
 
 function countStats(childs) {
+    stats = {
+        gelb_rund: 0,
+        gelb_kantig: 0,
+        gruen_rund: 0,
+        gruen_kantig: 0
+    }
     for(var child of childs){
         switch (child.phen){
             case "gelb/rund":
@@ -105,19 +111,19 @@ function genChild(){
     var child = {pair: cellPair, gens: childGens, string: childString, phen: childPhen}
     return child;
 }
+var stats = {
+    gelb_rund: 0,
+    gelb_kantig: 0,
+    gruen_rund: 0,
+    gruen_kantig: 0
+}
 
 function main(ITERATIONS){
     var estimations = {
-        gelb_rund: ITERATIONS * 9/16,
-        gelb_kantig: ITERATIONS * 3/16,
-        gruen_rund: ITERATIONS * 3/16,
-        gruen_kantig: ITERATIONS * 1/16
-    }
-    var stats = {
-        gelb_rund: 0,
-        gelb_kantig: 0,
-        gruen_rund: 0,
-        gruen_kantig: 0
+        gelb_rund: Math.round(ITERATIONS * 9/16),
+        gelb_kantig: Math.round(ITERATIONS * 3/16),
+        gruen_rund: Math.round(ITERATIONS * 3/16),
+        gruen_kantig: Math.round(ITERATIONS * 1/16)
     }
 
     var genList = [];
