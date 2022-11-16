@@ -21,6 +21,7 @@
                         <th>Erwartung</th>
                         <th>Ergebnis</th>
                         <th>Differenz zu Erwartung</th>
+                        <th>Differenz in Prozent</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,21 +30,25 @@
                         <td id="t_ge_ru_x"></td>
                         <td id="t_ge_ru_e"></td>
                         <td id="t_ge_ru_d"></td>
+                        <td id="t_ge_ru_p"></td>
                     </tr>
                         <td>gelb, kantig</td>
                         <td id="t_ge_ka_x"></td>
                         <td id="t_ge_ka_e"></td>
                         <td id="t_ge_ka_d"></td>
+                        <td id="t_ge_ka_p"></td>
                     </tr>
                         <td>gr&uuml;n, rund</td>
                         <td id="t_gr_ru_x"></td>
                         <td id="t_gr_ru_e"></td>
                         <td id="t_gr_ru_d"></td>
+                        <td id="t_gr_ru_p"></td>
                     </tr>
                         <td>gr&uuml;n, antig</td>
                         <td id="t_gr_ka_x"></td>
                         <td id="t_gr_ka_e"></td>
                         <td id="t_gr_ka_d"></td>
+                        <td id="t_gr_ka_p"></td>
                     </tr>
                 </tbody>
             </table>
@@ -74,6 +79,12 @@
                         gelb_kantig: dElem("t_ge_ka_d"),
                         gruen_rund: dElem("t_gr_ru_d"),
                         gruen_kantig: dElem("t_gr_ka_d")
+                    },
+                    per: {
+                        gelb_rund: dElem("t_ge_ru_p"),
+                        gelb_kantig: dElem("t_ge_ka_p"),
+                        gruen_rund: dElem("t_gr_ru_p"),
+                        gruen_kantig: dElem("t_gr_ka_p")
                     }
                 }
                 elements.expectations.gelb_rund.innerText = res.expectation.gelb_rund;
@@ -90,6 +101,11 @@
                 elements.diff.gelb_kantig.innerText = res.stats.gelb_kantig - res.expectation.gelb_kantig;
                 elements.diff.gruen_rund.innerText = res.stats.gruen_rund - res.expectation.gruen_rund;
                 elements.diff.gruen_kantig.innerText = res.stats.gruen_kantig - res.expectation.gruen_kantig;
+                
+                elements.per.gelb_rund.innerText = (res.stats.gelb_rund - res.expectation.gelb_rund) / res.iterations * 100;
+                elements.per.gelb_kantig.innerText = (res.stats.gelb_kantig - res.expectation.gelb_kantig) / res.iterations * 100;
+                elements.per.gruen_rund.innerText = (res.stats.gruen_rund - res.expectation.gruen_rund) / res.iterations * 100;
+                elements.per.gruen_kantig.innerText = (res.stats.gruen_kantig - res.expectation.gruen_kantig) / res.iterations * 100;
             }
 
             function calculateTable(){
