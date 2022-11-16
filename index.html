@@ -102,10 +102,10 @@
                 elements.diff.gruen_rund.innerText = res.stats.gruen_rund - res.expectation.gruen_rund;
                 elements.diff.gruen_kantig.innerText = res.stats.gruen_kantig - res.expectation.gruen_kantig;
                 
-                elements.per.gelb_rund.innerText = (res.stats.gelb_rund - res.expectation.gelb_rund) / res.iterations * 100;
-                elements.per.gelb_kantig.innerText = (res.stats.gelb_kantig - res.expectation.gelb_kantig) / res.iterations * 100;
-                elements.per.gruen_rund.innerText = (res.stats.gruen_rund - res.expectation.gruen_rund) / res.iterations * 100;
-                elements.per.gruen_kantig.innerText = (res.stats.gruen_kantig - res.expectation.gruen_kantig) / res.iterations * 100;
+                elements.per.gelb_rund.innerText = (res.stats.gelb_rund - res.expectation.gelb_rund) / res.iterations * 100 + "%";
+                elements.per.gelb_kantig.innerText = (res.stats.gelb_kantig - res.expectation.gelb_kantig) / res.iterations * 100 + "%";
+                elements.per.gruen_rund.innerText = (res.stats.gruen_rund - res.expectation.gruen_rund) / res.iterations * 100 + "%";
+                elements.per.gruen_kantig.innerText = (res.stats.gruen_kantig - res.expectation.gruen_kantig) / res.iterations * 100 + "%";
             }
 
             function calculateTable(){
