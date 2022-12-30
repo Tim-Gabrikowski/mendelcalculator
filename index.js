@@ -75,29 +75,20 @@ function calcPhen(gens){
     return color + "/" + form;
 }
 
-
-function countStats(childs) {
-    stats = {
-        gelb_rund: 0,
-        gelb_kantig: 0,
-        gruen_rund: 0,
-        gruen_kantig: 0
-    }
-    for(var child of childs){
-        switch (child.phen){
-            case "gelb/rund":
-                stats.gelb_rund++;
-                break;
-            case "gelb/kantig":
-                stats.gelb_kantig++;
-                break;
-            case "grün/rund":
-                stats.gruen_rund++;
-                break;
-            case "grün/kantig":
-                stats.gruen_kantig++;
-                break;
-        }
+function countStats(child) {
+    switch (child.phen){
+        case "gelb/rund":
+            stats.gelb_rund++;
+            break;
+        case "gelb/kantig":
+            stats.gelb_kantig++;
+            break;
+        case "grün/rund":
+            stats.gruen_rund++;
+            break;
+        case "grün/kantig":
+            stats.gruen_kantig++;
+            break;
     }
 }
 
@@ -119,6 +110,12 @@ var stats = {
 }
 
 function main(ITERATIONS){
+    stats = {
+        gelb_rund: 0,
+        gelb_kantig: 0,
+        gruen_rund: 0,
+        gruen_kantig: 0
+    };
     var estimations = {
         gelb_rund: Math.round(ITERATIONS * 9/16),
         gelb_kantig: Math.round(ITERATIONS * 3/16),
@@ -126,12 +123,9 @@ function main(ITERATIONS){
         gruen_kantig: Math.round(ITERATIONS * 1/16)
     }
 
-    var genList = [];
-
     for (var i = 0; i < ITERATIONS; i++) {
-        genList.push(genChild());
+        countStats(genChild());
     }
-    countStats(genList);
 
     return {iterations: ITERATIONS, stats: stats, expectation: estimations};    
 }
